@@ -26,7 +26,7 @@ export interface TreeProps<T> {
   renderContainer?: ElementType<{}>;
 
   /* Sizes */
-  rowHeight?: number;
+  rowHeight?: number | ((index: number) => number);
   overscanCount?: number;
   width?: number | string;
   height?: number;
