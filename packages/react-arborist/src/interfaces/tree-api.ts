@@ -84,7 +84,7 @@ export class TreeApi<T> {
   }
 
   get variableRowHeight() {
-    return this.props.vaiableRowHeight ?? null
+    return this.props.variableRowHeight ?? null
   }
 
   get overscanCount() {
