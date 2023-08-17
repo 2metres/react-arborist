@@ -2,7 +2,7 @@ import { EditResult } from "../types/handlers";
 import { Identity, IdObj } from "../types/utils";
 import { TreeProps } from "../types/tree-props";
 import { MutableRefObject } from "react";
-import { Align, FixedSizeList, ListOnItemsRenderedProps } from "react-window";
+import { Align, ListOnItemsRenderedProps, VariableSizeList } from "react-window";
 import * as utils from "../utils";
 import { DefaultCursor } from "../components/default-cursor";
 import { DefaultRow } from "../components/default-row";
@@ -34,7 +34,7 @@ export class TreeApi<T> {
   constructor(
     public store: Store<RootState, Actions>,
     public props: TreeProps<T>,
-    public list: MutableRefObject<FixedSizeList | null>,
+    public list: MutableRefObject<VariableSizeList | null>,
     public listEl: MutableRefObject<HTMLDivElement | null>
   ) {
     /* Changes here must also be made in update() */
@@ -81,6 +81,10 @@ export class TreeApi<T> {
 
   get rowHeight() {
     return this.props.rowHeight ?? 24;
+  }
+
+  get variableRowHeight() {
+    return this.props.vaiableRowHeight ?? null
   }
 
   get overscanCount() {

@@ -6,7 +6,7 @@ import { ListInnerElement } from "./list-inner-element";
 import { RowContainer } from "./row-container";
 
 let focusSearchTerm = "";
-let timeoutId: any = null;
+let timeoutId: NodeJS.Timeout | undefined;
 
 /**
  * All these keyboard shortcuts seem like they should be configurable.
@@ -221,7 +221,8 @@ export function DefaultContainer() {
         itemCount={tree.visibleNodes.length}
         height={tree.height}
         width={tree.width}
-        itemSize={tree.rowHeight}
+        itemSize={tree.variableRowHeight === null ? () => tree.rowHeight : tree.variableRowHeight}
+        estimatedItemSize={tree.rowHeight}
         overscanCount={tree.overscanCount}
         itemKey={(index) => tree.visibleNodes[index]?.id || index}
         outerElementType={ListOuterElement}
