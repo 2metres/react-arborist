@@ -53,7 +53,7 @@ export class TreeApi<T> {
     this.root = createRoot<T>(this);
     this.visibleNodes = createList<T>(this);
     this.idToIndex = createIndex(this.visibleNodes);
-    this.list.current?.resetAfterIndex(0);
+    this.list.current?.resetAfterIndex(0, /*shouldForceUpdate=*/ false);
   }
 
   /* Store helpers */
