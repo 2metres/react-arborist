@@ -221,7 +221,13 @@ export function DefaultContainer() {
         itemCount={tree.visibleNodes.length}
         height={tree.height}
         width={tree.width}
-        itemSize={tree.variableRowHeight === null ? () => tree.rowHeight : tree.variableRowHeight}
+        itemSize={(index) => {
+          if (!tree.variableRowHeight) {
+            return tree.rowHeight;
+          }
+          const node = tree.visibleNodes[index];
+          return node ? tree.variableRowHeight(node) : tree.rowHeight;
+        }}
         estimatedItemSize={tree.rowHeight}
         overscanCount={tree.overscanCount}
         itemKey={(index) => tree.visibleNodes[index]?.id || index}

@@ -2,7 +2,11 @@ import { EditResult } from "../types/handlers";
 import { Identity, IdObj } from "../types/utils";
 import { TreeProps } from "../types/tree-props";
 import { MutableRefObject } from "react";
-import { Align, ListOnItemsRenderedProps, VariableSizeList } from "react-window";
+import {
+  Align,
+  ListOnItemsRenderedProps,
+  VariableSizeList,
+} from "react-window";
 import * as utils from "../utils";
 import { DefaultCursor } from "../components/default-cursor";
 import { DefaultRow } from "../components/default-row";
@@ -49,6 +53,7 @@ export class TreeApi<T> {
     this.root = createRoot<T>(this);
     this.visibleNodes = createList<T>(this);
     this.idToIndex = createIndex(this.visibleNodes);
+    this.list.current?.resetAfterIndex(0);
   }
 
   /* Store helpers */
@@ -84,7 +89,7 @@ export class TreeApi<T> {
   }
 
   get variableRowHeight() {
-    return this.props.variableRowHeight ?? null
+    return this.props.variableRowHeight ?? null;
   }
 
   get overscanCount() {

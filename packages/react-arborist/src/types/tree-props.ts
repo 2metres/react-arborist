@@ -27,7 +27,7 @@ export interface TreeProps<T> {
 
   /* Sizes */
   rowHeight?: number;
-  variableRowHeight?: (index: number) => number;
+  variableRowHeight?: (node: NodeApi<T>) => number;
   overscanCount?: number;
   width?: number | string;
   height?: number;
